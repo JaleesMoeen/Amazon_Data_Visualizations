@@ -1,0 +1,2 @@
+# Apple_Web_Scrapping_ETL_EDA
+ Embark on an engaging project that seamlessly combines the thrill of gaming with the tech-driven realms of web scraping, ETL (Extract, Transform, Load), and insightful exploratory data analysis (EDA). Dive into the Apple ecosystem as you leverage these techniques to uncover hidden gems, transform raw data into meaningful insights, and create an immersive experience at the intersection of data exploration.
