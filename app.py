@@ -12,6 +12,19 @@ def index():
     # Render the "index.html" template
     return render_template("index.html")
 
+# Define a route for the iPhone Samsung details API
+@app.route("/api/iphone_samsung_details")
+def api_iphone_samsung_details():
+
+    # Read the iPhone  Samsung merged data from CSV into a DataFrame
+    df= pd.read_csv('Cleaned Data\iphone_samsung_merged_data.csv')
+    df1=df.to_json(orient='records')
+    df1=pd.read_json(df1)
+
+    # Return the iPhone  Samsung details as JSON
+    return jsonify(df1.to_dict(orient='records'))
+
+
 # Define a route for the iPhone details API
 @app.route("/api/iphone_details")
 def api_iphone_details():

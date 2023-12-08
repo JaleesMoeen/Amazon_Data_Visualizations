@@ -1,7 +1,7 @@
-brand_model,storage_capacity,color,model_year,price,number_of_global_ratings,star_ratings,5 star,4 star,3 star,2 star,1 star
-Apple iPhone 12,64, Blue ,2020,435.0,12493,4.1,62,15,6,4,12
-Apple iPhone 12 Pro,128, Graphite ,2020,689.86,4711,4.1,59,17,6,4,13
-Apple iPhone 13 Pro,128, Gold ,2021,799.99,161,4.3,70,13,4,4,8
-Apple iPhone 13 Pro Max,128, Sierra Blue ,2021,899.99,420,4.3,71,12,3,3,10
-Apple iPhone 14,128, Midnight ,2022,899.98,852,4.4,75,10,4,2,9
-Apple iPhone 14 Pro Max,128, Deep Purple ,2022,1849.0,669,4.3,73,8,4,2,13
+brand,brand_model,storage_capacity,color,model_year,price,number_of_global_ratings,star_ratings,5 star,4 star,3 star,2 star,1 star
+Apple,iPhone 12,64, Blue ,2020,435.0,12493,4.1,62,15,6,4,12
+Apple,iPhone 12 Pro,128, Graphite ,2020,689.86,4711,4.1,59,17,6,4,13
+Apple,iPhone 13 Pro,128, Gold ,2021,799.99,161,4.3,70,13,4,4,8
+Apple,iPhone 13 Pro Max,128, Sierra Blue ,2021,899.99,420,4.3,71,12,3,3,10
+Apple,iPhone 14,128, Midnight ,2022,899.98,852,4.4,75,10,4,2,9
+Apple,iPhone 14 Pro Max,128, Deep Purple ,2022,1849.0,669,4.3,73,8,4,2,13
