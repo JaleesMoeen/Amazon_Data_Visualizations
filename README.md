@@ -33,7 +33,7 @@ Deliverable 3: Data Visualizations Using Plotly.js
 
 
 
-# Deliverable 1: Web Scaping Using Beautiful Soup
+## Deliverable 1: Web Scaping Using Beautiful Soup
 
 Hey, let's explore the data with web scrapping and analyze the data using Beautiful soup and Pandas Python Data Analysis.
 
@@ -133,13 +133,54 @@ Creates DataFrames 'scraped_iphone_df' and 'scraped_samsung_df' from the scraped
 
 
 
-# Deliverable 2: Load the Data to Postgres Database
+## Deliverable 2: Deliverable 2: Data Cleaning Using Jupyter Notebook
+
+Hey, let's clean the data for robust Python Data Analysis experiences using Pandas and Regular Expressions.
+
+
+![Alt text](images/11_regex.png)
+
+
+### 2.1 Prerequisites
+
+Before you begin, ensure you have the following installed:
+
+Python 3.6 or higher
+
+Regular Expressions
+
+Data Analysis ( Pandas, Numpy, Scikit-learn )
+
+
+### 2.2 Data Sources
+
+We use the data resources from two files 'scraped_iphone_data.csv' and 'scraped_samsung_data.csv' using Pandas.
+
+
+![Alt text](images/12_cleaning_data_sources.png)
+
+
+### 2.3 How We Cleaned The Data
+
+Drops unnecessary columns.
+
+Extracts and converts storage capacity, color, price, star ratings, global ratings, and customer stars percentages to appropriate data types using regular expressions.
+
+Creates new columns, including 'brand,' 'model_year,' and reorders columns with appropriate names.
+
+Saves cleaned 'iphone_samsung_df' data to JSON and CSV files.
+
+
+![Alt text](images/13_iphone_samsung_df.png)
+
+
+
+
 
 
 
 
 ## Authors
-
 
 ## [Maira Syed GitHub](https://github.com/mairasyed)
 
