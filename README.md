@@ -256,7 +256,7 @@ Constructs a bar chart displaying the prices of Apple & Samsung phones.
 
 
 
-Constructs a bar chart displaying the distribution of star ratings for Samsung brand models.
+Bar chart displaying the distribution of star ratings for Samsung brand models.
 Building Pie Chart for Samsung Brand Models:
 
 Constructs a pie chart displaying the distribution of star ratings for Samsung brand models.

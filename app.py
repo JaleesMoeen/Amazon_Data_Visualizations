@@ -10,7 +10,7 @@ app = Flask(__name__)
 def index():
 
     # Render the "index.html" template
-    return render_template("index.html")
+    return render_template("templates/index.html")
 
 # Define a route for the iPhone Samsung details API
 @app.route("/api/iphone_samsung_details")
