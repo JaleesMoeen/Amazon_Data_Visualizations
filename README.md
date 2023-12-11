@@ -73,44 +73,35 @@ The structre of the Webpages can view here:
 
 ![Alt text](images/7_customer_reviews_structure.png)
 
-### 1.3 Web 
+
+### 1.3 How We Extracted and Stored Data  
 
 Defines a list of URLs for iPhone and Samsung products on Amazon.
 
 
 Defines a function scrape_amazon_product to extract relevant information from Amazon product pages using BeautifulSoup and requests.
+
 The function extracts product title, price, star ratings, number of global ratings, customer stars percentages, and features and ratings.
+
 It also contains a function extract_model_number to extract the model number from the product title.
+
 The script showcases a systematic approach to web scraping.
 
 
-![Alt text](images/8_amazon_funcction.png)
+![Alt text](images/8_amazon_function.png)
 
 
+Defines dictionaries 'iphone_scraped_data' and 'samsung_scraped_data' to store scraped data for iPhone & Samsung products.
+
+Loops through each brand's URLs, calls the scrape_amazon_product function, and stores the scraped data in the dictionaries. Saves the scraped data to JSON and CSV files.
+
+Creates DataFrames 'scraped_iphone_df' and 'scraped_samsung_df' from the scraped data. Splits the 'title' column into multiple columns based on commas. Saves the modified DataFrames to CSV files.
 
 
+![Alt text](images/9_scraped_iphone_df.png)
 
 
-Defines a dictionary iphone_scraped_data to store scraped data for iPhone products.
-Loops through each iPhone URL, calls the scrape_amazon_product function, and stores the scraped data in the dictionary.
-Saves the scraped data to a JSON file and a CSV file.
-
-
-Creates a DataFrame scraped_iphone_df from the scraped data.
-Splits the 'title' column into multiple columns based on commas.
-Saves the DataFrame to a CSV file.
-
-Defines a dictionary samsung_scraped_data to store scraped data for Samsung products.
-Loops through each Samsung URL, calls the scrape_amazon_product function, and stores the scraped data in the dictionary.
-Saves the scraped data to a JSON file and a CSV file.
-
-
-Creates a DataFrame scraped_samsung_df from the scraped data.
-Saves the DataFrame to a CSV file.
-Each cell contributes to the overall process of web scraping Amazon product data for both iPhone and Samsung, organizing the data, and saving it in JSON and CSV formats. The summary outlines the key actions performed in each cell.
-
-
-
+![Alt text](images/10_scraped_samsung_df.png)
 
 
 
