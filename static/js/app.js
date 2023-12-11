@@ -1,3 +1,25 @@
+
+//////////////////////////////////////////////      Sweeet Library           /////////////////////////////////////////////////
+
+function showSweetAlert() {
+  Swal.fire({
+    title: "Unlock the Power of Data Insights!",
+      timer: 3000, // Auto close after 3 seconds
+      icon: 'success',
+      html: "Where data meets design",
+      showConfirmButton: false, // Hide the "OK" button
+  });
+}
+
+// Trigger the Sweet Alert when the page loads
+window.onload = function() {
+  showSweetAlert();
+};
+
+
+
+
+
 // API endpoints for fetching iPhone, Samsung, and merged details
 const iphone_samsung_url = "/api/iphone_samsung_details"
 const iphone_url = "/api/iphone_details";
@@ -494,23 +516,6 @@ function buildBrandBubbleChart() {
 
 
 
-
-//////////////////////////////////////////////      Sweeet Library           /////////////////////////////////////////////////
-
-function showSweetAlert() {
-  Swal.fire({
-    title: "Unlock the Power of Data Insights!",
-      timer: 3000, // Auto close after 3 seconds
-      icon: 'success',
-      html: "Where data meets design",
-      showConfirmButton: false, // Hide the "OK" button
-  });
-}
-
-// Trigger the Sweet Alert when the page loads
-window.onload = function() {
-  showSweetAlert();
-};
 
 
 

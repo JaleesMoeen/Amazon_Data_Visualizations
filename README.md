@@ -26,7 +26,7 @@ Deliverable 1: Web Scaping Using Beautiful Soup.
 
 Deliverable 2: Data Cleaning Using Jupyter Notebook.
 
-Deliverable 3: Data Visualizations Using Plotly.js
+Deliverable 3: Flask-powered API & Data Visualizations Using Plotly.js
 
 
 ![Alt text](images/3_deliverables.jpg)
@@ -172,6 +172,108 @@ Saves cleaned 'iphone_samsung_df' data to JSON and CSV files.
 
 
 ![Alt text](images/13_iphone_samsung_df.png)
+
+
+## Deliverable 3: Flask-powered API & Data Visualizations Using Plotly.js
+
+
+Hi, let's  Explore the world of Amazon, Apple, and Samsung like never before!
+
+![Alt text](images/14_flask.webp)
+
+![Alt text](images/15_plotly.png)
+
+
+### 3.1 Prerequisites
+
+Before you begin, ensure you have the following installed:
+
+Flask (Imports the Flask framework, allowing the creation of a web application)
+
+jsonify ( Python dictionaries to JSON responses, and render_template facilitates rendering HTML templates )
+
+render_template  (facilitates rendering HTML templates)
+
+HTML, CSS, Bootsrap ( for structure and style web page)
+
+JavaScript ( for dynamic behavior)
+
+Sweetalert ( for Dashboard POPUP BOXES)
+
+D3.js ( for data manipulation)
+
+Plotly ( for interactive graphs )
+
+### 3.2 Flask API Routes
+
+
+#### Home Page Route (@app.route("/")): 
+
+Renders the "index.html" template when users access the home page ("/").
+
+#### iPhone and Samsung Details API Routes:
+
+The below routes read merged iPhone and Samsung data from a CSV file, converts it to JSON, and returns it as a JSON response:
+
+/api/iphone_samsung_details
+
+/api/iphone_details
+
+/api/samsung_details
+
+
+### 3.3 Data Visualizations
+
+#### 3.3.1 SweetAlert JS Library
+
+Displays a SweetAlert notification when the page loads.
+
+
+#### 3.3.2 Product Selection and Dashboard Initialization:
+
+Created a dropdown menu to select different iPhone and Samsung models.
+Upon selection, populates demographic information, builds pie charts, and bar charts for the selected product.
+
+Also, initializes specific charts for Apple and Samsung brands.
+Populating Product Information:
+Retrieves specific information (brand, color, price, storage capacity) for the selected product and displays it.
+
+Constructs a pie chart displaying the distribution of star ratings for the selected product.
+Building Bar Chart for Product Star Ratings:
+
+
+
+![Alt text](images/16_product_info.png)
+
+
+#### 3.3.3 Bar Chart for Apple Samsung Product & Price 
+
+Constructs a bar chart displaying the prices of Apple & Samsung phones.
+
+
+![Alt text](images/17_apple_samsung_bar.png)
+
+
+
+
+Constructs a bar chart displaying the distribution of star ratings for Samsung brand models.
+Building Pie Chart for Samsung Brand Models:
+
+Constructs a pie chart displaying the distribution of star ratings for Samsung brand models.
+Building Price Bar Chart for Samsung Phones:
+
+Constructs a bar chart displaying the prices of Samsung phones.
+Building Line Chart for Both Brands Over Model Years:
+
+Constructs a line chart showing the evolution of brand models over different model years for both Apple and Samsung.
+Building Bubble Chart for Both Brands:
+
+Constructs a bubble chart showing the relationship between global ratings, price, and brand models for both Apple and Samsung.
+SweetAlert Integration:
+
+Includes a SweetAlert popup to display a success message when the page loads, providing a user-friendly experience.
+
+
 
 
 
