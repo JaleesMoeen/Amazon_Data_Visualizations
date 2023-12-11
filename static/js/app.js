@@ -3,31 +3,53 @@ const iphone_samsung_url = "/api/iphone_samsung_details"
 const iphone_url = "/api/iphone_details";
 const samsung_url = "/api/samsung_details";
 
+///////////////////////////////////    Start of Product            ///////////////////////////////////
+
 // No. 1 Defines the function to create the Dashboard activities
 // Select each product using the dropdown
 function initProduct() {    
+
+  // Start of Product dropdown
     d3.json(iphone_samsung_url).then(data => {
         var brandModel = data.map(entry => entry.brand_model);
         var dropdown = d3.select("#selDataset");
         // Append an option for each brand model
         brandModel.forEach(brandModel => {
             dropdown.append("option").text(brandModel).property("value", brandModel);
-        });
-        // Initial call to update charts with the first brand model
-        // updateCharts(brandModels[0]);
-        // Call the function to populate Product Info
+        });        
+        // Call the function for Each Product 
         populateProdcutInfo(brandModel[0]);
-        // Call the function to create Pie Chart
         buildProductPieChart(brandModel[0]);
-        buildBarChart(brandModel[0]);
-        buildBrandBarChart(brandModel[0]);
+        buildProductBarChart(brandModel[0]);
 
-        buildBrandPieChart();
-        // Call all those functions which build the 'Bar', 'Bubble', & 'Gauge' Chart for the Dashboard.
-        // buildBarChart(brandModel[0]);
-        // buildBubbleChart(brandModel[0]);
+
+        // Call the function for Apple Brand
+        buildAppleBarChart(brandModel[0]);
+        buildApplePieChart();
+        buildApplePriceBarChart();
+
+        // Call the function for Samsung Brand
+        buildSamsungBarChart(brandModel[0]);
+        buildSamsungPieChart();
+        buildSamsungPriceBarChart();
+
+
+        // Call the function for Line Model Year
+        buildBrandModelLineChart();
+
+        // Call the function for Brand Bubble Chart 
+        buildBrandBubbleChart();
+
+        //Call the function for Brand Bar Charts
+        buildBrandBarChart();
         
-    });  
+
+
+
+        
+    }); 
+  // End of Product Drop Down
+  
 }
 
 // Call the function for Dashboard
@@ -54,56 +76,59 @@ function  populateProdcutInfo(brandModel) {
 // No. 3 Defines the function for OptionChaged 
 function optionProductChanged(brandModel) {
     console.log(brandModel);
-    // Call the function to populate Demographic info 
-    populateProdcutInfo(brandModel)
-    // Call the function to Create Pie Chart
-    buildProductPieChart(brandModel)
-    buildBarChart(brandModel)
-    buildBrandBarChart(brandModel)
-    // Call the function to pass the 'patientID' for the 'Bar', 'Bubble' and 'Guage' chart.
-    // buildBarChart(patientID);
-    // buildBubbleChart(patientID);
-    buildBrandPieChart()
+
+   // Call the function for Each Product 
+    populateProdcutInfo(brandModel);
+    buildProductPieChart(brandModel);
+    buildProductBarChart(brandModel);
+    
+    // // Call the function for Apple Brand
+    // buildAppleBarChart(brandModel);
+    // buildApplePieChart();
+
+    // // Call the function for Samsung Brand
+    // buildSamsungBarChart(brandModel);
+    // buildSamsungPieChart();
+
 }
 
 
-// No. 4 Defines to create the Pie Chart for Each Product  star ratings distribution 
-function buildProductPieChart(){
+// No. 4 Defines to create the Pie Chart for Each Product star ratings distribution 
+function buildProductPieChart(brandModel) {
   // Read in the JSON data
-  d3.json(iphone_samsung_url).then((data => {
-  // Extract star ratings and counts from the data
-  // Extracting data for Pie Chart
-var pieChartData = {
-  "5 star": data.map(entry => entry["5 star"]).reduce((a, b) => a + b, 0),
-  "4 star": data.map(entry => entry["4 star"]).reduce((a, b) => a + b, 0),
-  "3 star": data.map(entry => entry["3 star"]).reduce((a, b) => a + b, 0),
-  "2 star": data.map(entry => entry["2 star"]).reduce((a, b) => a + b, 0),
-  "1 star": data.map(entry => entry["1 star"]).reduce((a, b) => a + b, 0),
-};
+  d3.json(iphone_samsung_url).then((data) => {
+    // Filter data for the selected brand/model
+    var filteredData = data.filter(entry => entry.brand_model === brandModel)[0];
 
-// Create a Pie Chart using Plotly
-var trace = {
-  labels: Object.keys(pieChartData),
-  values: Object.values(pieChartData),
-  type: 'pie',
-  marker: {
-    colors: ['rgb(0, 128, 255)', 'rgb(0, 179, 0)', 'rgb(255, 191, 0)', 'rgb(255, 0, 0)', 'rgb(128, 0, 128)'], // Colors for segments
-  }
-};
+    // Extract star ratings and counts from the data
+    var pieChartData = {
+      "5 star": filteredData["5 star"],
+      "4 star": filteredData["4 star"],
+      "3 star": filteredData["3 star"],
+      "2 star": filteredData["2 star"],
+      "1 star": filteredData["1 star"],
+    };
 
-var layout = {
-  title: 'Iphone Distribution of Star Ratings',
-};
+    // Create a Pie Chart using Plotly
+    var trace = {
+      labels: Object.keys(pieChartData),
+      values: Object.values(pieChartData),
+      type: 'pie',
+      marker: {
+        colors: ['rgb(0, 128, 255)', 'rgb(0, 179, 0)', 'rgb(255, 191, 0)', 'rgb(255, 0, 0)', 'rgb(128, 0, 128)'], // Colors for segments
+      }
+    };
 
-// Plot the Pie Chart
-Plotly.newPlot('pieProduct', [trace], layout);
+    var layout = {
+      title: `Distribution of Star Ratings for ${brandModel}`,
+    };
 
-  }))
+    // Plot the Pie Chart
+    Plotly.newPlot('pieProduct', [trace], layout);
+  });
 }
-
-
 // No. 5 Defines to create the Bar chart
-function buildBarChart(brandModel) {
+function buildProductBarChart(brandModel) {
   d3.json(iphone_samsung_url).then((data) => {
       // Filter data for the selected brand/model
       var filteredData = data.filter(entry => entry.brand_model === brandModel)[0];
@@ -131,14 +156,15 @@ function buildBarChart(brandModel) {
       };
 
       // Display the plot
-      Plotly.newPlot('bar', barData, barLayout);
+      Plotly.newPlot('barProduct', barData, barLayout);
   });
 }
 
 
+//////////////////////////////////////////////       Apple        ///////////////////////////////////////////////
 // No. 6 defines for Bar chart for Brand
-function buildBrandBarChart(brandModel) {
-  d3.json(iphone_samsung_url).then((data) => {
+function buildAppleBarChart(brandModel) {
+  d3.json(iphone_url).then((data) => {
     // Filter data for the Apple brand
     var filteredData = data.filter(entry => entry.brand === 'Apple');
 
@@ -160,15 +186,13 @@ function buildBrandBarChart(brandModel) {
     };
 
     // Display the plot
-    Plotly.newPlot('brandbar', barData, layout);
+    Plotly.newPlot('applebar', barData, layout);
 });
 
 }
 
-
 //  No. 7 
-
-function buildBrandPieChart() {
+function buildApplePieChart(brandModel) {
   d3.json(iphone_samsung_url).then((data) => {
       // Filter data for the Apple brand
       var filteredData = data.filter(entry => entry.brand === 'Apple');
@@ -197,7 +221,39 @@ function buildBrandPieChart() {
       };
 
       // Plot the Pie Chart
-      Plotly.newPlot('brandpie', [trace], layout);
+      Plotly.newPlot('applepie', [trace], layout);
+  });
+}
+
+function buildApplePriceBarChart() {
+  // Fetch data from the specified URL
+  d3.json(iphone_url).then(data => {
+      // Extract brand_model and price data
+      var brandModels = data.map(entry => entry.brand_model);
+      var prices = data.map(entry => entry.price);
+
+      // Create the trace for the bar chart
+      var trace = {
+          x: brandModels,
+          y: prices,
+          type: 'bar',
+          marker: {
+              color: 'rgb(242, 113, 102)',
+          },
+      };
+
+      // Define plot layout
+      var layout = {
+          title: 'Price Bar Chart for Apple IPhones',
+          xaxis: { title: 'Brand Model' },
+          yaxis: {
+            title: 'Price',
+                tickformat: '$,.2f', // Format ticks as dollars with two decimal places
+                automargin: true // Add margin to the left of y-axis labels
+        },
+      };
+      // Display the plot
+      Plotly.newPlot('applepricebar', [trace], layout);
   });
 }
 
@@ -205,265 +261,262 @@ function buildBrandPieChart() {
 
 
 
+//////////////////////////////////////////////       Samsung      ///////////////////////////////////////////////
+function buildSamsungBarChart(brandModel) {
+  d3.json(iphone_samsung_url).then((data) => {
+    // Filter data for the Apple brand
+    var filteredData = data.filter(entry => entry.brand === 'Samsung');
+
+    // Extract star ratings data for each model
+    var barData = filteredData.map(entry => {
+        return {
+            x: Object.keys(entry).filter(key => key !== 'brand_model' && key !== 'brand'),
+            y: Object.values(entry).filter((value, index) => index !== 0 && index !== 1),
+            type: 'bar',
+            name: entry.brand_model,
+        };
+    });
+
+    // Define plot layout
+    var layout = {
+        title: 'Bar Chart for Samsung Phones',
+        xaxis: { title: 'Star Ratings' },
+        yaxis: { title: 'Count' },
+    };
+
+    // Display the plot
+    Plotly.newPlot('samsungbar', barData, layout);
+});
+
+}
+
+function buildSamsungPieChart(brandModel) {
+  d3.json(iphone_samsung_url).then((data) => {
+      // Filter data for the Apple brand
+      var filteredData = data.filter(entry => entry.brand === 'Samsung');
+
+      // Extract star ratings and counts from the data
+      var pieChartData = {
+          "5 star": filteredData.map(entry => entry["5 star"]).reduce((a, b) => a + b, 0),
+          "4 star": filteredData.map(entry => entry["4 star"]).reduce((a, b) => a + b, 0),
+          "3 star": filteredData.map(entry => entry["3 star"]).reduce((a, b) => a + b, 0),
+          "2 star": filteredData.map(entry => entry["2 star"]).reduce((a, b) => a + b, 0),
+          "1 star": filteredData.map(entry => entry["1 star"]).reduce((a, b) => a + b, 0),
+      };
+
+      // Create a Pie Chart using Plotly
+      var trace = {
+          labels: Object.keys(pieChartData),
+          values: Object.values(pieChartData),
+          type: 'pie',
+          marker: {
+              colors: ['rgb(0, 128, 255)', 'rgb(0, 179, 0)', 'rgb(255, 191, 0)', 'rgb(255, 0, 0)', 'rgb(128, 0, 128)'], // Colors for segments
+          }
+      };
+
+      var layout = {
+          title: 'Distribution of Star Ratings for Samsung Phones',
+      };
+
+      // Plot the Pie Chart
+      Plotly.newPlot('samsungpie', [trace], layout);
+  });
+}
+
+function buildSamsungPriceBarChart() {
+  // Fetch data from the specified URL
+  d3.json(samsung_url).then(data => {
+      // Extract brand_model and price data
+      var brandModels = data.map(entry => entry.brand_model);
+      var prices = data.map(entry => entry.price);
+
+      // Create the trace for the bar chart
+      var trace = {
+          x: brandModels,
+          y: prices,
+          type: 'bar',
+          marker: {
+              color: 'rgb(242, 113, 102)',
+          },
+      };
+
+      // Define plot layout
+      var layout = {
+          title: 'Price Bar Chart for Samsung',
+          xaxis: { title: 'Brand Model' },
+          yaxis: {
+            title: 'Price',
+                tickformat: '$,.2f', // Format ticks as dollars with two decimal places
+                automargin: true, // Add margin to the left of y-axis labels
+        },
+      };
+      // Display the plot
+      Plotly.newPlot('samsungpricebar', [trace], layout);
+  });
+}
+
+
+////////////////////////////////////////////////////////   Line Chart for Both Brands //////////////////////
+
+function buildBrandModelLineChart() {
+  d3.json(iphone_samsung_url).then((data) => {
+    // Filter data for Apple and Samsung brands
+    var appleData = data.filter(entry => entry.brand === 'Apple');
+    var samsungData = data.filter(entry => entry.brand === 'Samsung');
+
+    // Create traces for Apple and Samsung
+    var appleTrace = {
+      x: appleData.map(entry => entry.model_year),
+      y: appleData.map(entry => entry.brand_model),
+      mode: 'lines+markers',
+      name: 'Apple',
+      text: appleData.map(entry => `$${entry.price.toFixed(2)}`), // Add price to the text property
+      hoverinfo: 'y+text',  // Show brand model and price in the hover info
+    };
+
+    var samsungTrace = {
+      x: samsungData.map(entry => entry.model_year),
+      y: samsungData.map(entry => entry.brand_model),
+      mode: 'lines+markers',
+      name: 'Samsung',
+      text: samsungData.map(entry => `$${entry.price.toFixed(2)}`), // Add price to the text property
+      hoverinfo: 'y+text',  // Show brand model and price in the hover info
+    };
+
+    // Layout settings
+    var layout = {
+      title: 'Line Chart for Brand Models Over Model Years',
+      xaxis: {  title: 'Model Year',
+      tickmode: 'array',
+      tickvals: appleData.map(entry => entry.model_year), // Set tick values to the actual model years
+      ticktext: appleData.map(entry => entry.model_year), // Set tick text to the actual model years
+      tickvals: samsungData.map(entry => entry.model_year), // Set tick values to the actual model years
+      ticktext: samsungData.map(entry => entry.model_year), // Set tick text to the actual model years
+    },
+      yaxis: { title: 'Brand Model',
+      automargin: true, },
+      margin: {
+        l: 50,  // increase left margin
+        r: 50,  // increase right margin
+        t: 50,  // increase top margin
+        b: 50,  // increase bottom margin
+      },
+      showgrid: false,  // hide background grid
+    };
+
+    // Create the line chart
+    Plotly.newPlot('lineChart', [appleTrace, samsungTrace], layout);
+  });
+}
 
 
 
-// //////////////////////////////////////////          Start of   Brand               / ////////////////////////////////
+//////////////////////////////////////// Bubble Chart for Both Brands  //////////////////////////////////////
 
-// // No. 1 Defines the function to create the Dashboard activities
-// // Select each product using the dropdowns
-// function initBrand() {    
-//   d3.json(iphone_samsung_url).then(data => {
-//       var brand = data.map(entry => entry.brand);
-//       var dropdown = d3.select("#visualizationDropdown");
-//       // Append an option for each brand model
-//       brand.forEach(brand => {
-//           dropdown.append("option").text(brand).property("value", pieChart);
-//       });
-//       // Initial call to update charts with the first brand model
-//       // updateCharts(brandModels[0]);
-//       // Call the function to populate Product Info
-//       // populateProdcutInfo(brandModel[0]);
-//       // Call the function to create Pie Chart
-//       buildBrandPieChart(brand[0]);
-//       // Call all those functions which build the 'Bar', 'Bubble', & 'Gauge' Chart for the Dashboard.
-//       // buildBarChart(brand[0]);
-//       // buildBubbleChart(brand[0]);
-      
+
+// Function to build a bubble chart for Apple and Samsung brand models
+function buildBrandBubbleChart() {
+  d3.json(iphone_samsung_url).then((data) => {
+    // Filter data for Apple and Samsung brands
+    var appleData = data.filter(entry => entry.brand === 'Apple');
+    var samsungData = data.filter(entry => entry.brand === 'Samsung');
+
+    // Create traces for Apple and Samsung
+    var appleTrace = {
+      x: appleData.map(entry => entry.number_of_global_ratings),
+      y: appleData.map(entry => entry.price),
+      text: appleData.map(entry => entry.brand_model),
+      mode: 'markers',
+      marker: {
+        size: appleData.map(entry => entry.star_ratings * 1), // Scale the size by star ratings
+        sizemode: 'diameter',
+        sizeref: 0.1,
+        color: 'rgba(255, 99, 132, 0.7)', // Adjust color as needed
+      },
+      name: 'Apple',
+    };
+
+    var samsungTrace = {
+      x: samsungData.map(entry => entry.number_of_global_ratings),
+      y: samsungData.map(entry => entry.price),
+      text: samsungData.map(entry => entry.brand_model),
+      mode: 'markers',
+      marker: {
+        size: samsungData.map(entry => entry.star_ratings * 1), // Scale the size by star ratings
+        sizemode: 'diameter',
+        sizeref: 0.1,
+        color: 'rgba(75, 192, 192, 0.7)', // Adjust color as needed
+      },
+      name: 'Samsung',
+    };
+
+    // Layout settings
+    var layout = {
+      title: 'Bubble Chart for Brand Models',
+      xaxis: { title: 'Global Ratings' },
+      yaxis: { title: 'Price' },
+      showlegend: true,
+    };
+
+    // Create the bubble chart
+    Plotly.newPlot('bubbleChart', [appleTrace, samsungTrace], layout);
+  });
+}
+
+
+
+// ///////////////////////////////////  Bar Char for Both Brands ////////////////////////////////
+// // Function to build a bar chart for Apple and Samsung brand models
+// function buildBrandBarChart() {
+//    // Replace iphone_samsung_url with the appropriate URL for your data
+//    d3.json(iphone_samsung_url).then((data) => {
+//     // Extract brand_model and price data for each model
+//     var barData = data.map(entry => {
+//       return {
+//         x: [entry.brand_model], // Use an array for x to place each bar separately
+//         y: [entry.price], // Use an array for y to specify the height of each bar
+//         type: 'bar',
+//         name: entry.brand_model,
+//       };
+//     });
+
+//     // Define plot layout
+//     var layout = {
+//       title: 'Bar Chart for Brand Models',
+//       xaxis: { title: 'Brand Model' },
+//       yaxis: { title: 'Price' },
+//     };
+
+//     // Display the plot
+//     Plotly.newPlot('brandbar', barData, layout);
 //   });
-// }
-
-
-// // Call the function for Dashboard
-// initBrand();
-
-
-// // // No. 2 Defines the function to populate Product Info
-// // function  populateProdcutInfo(brandModel) {
-
-// //     var productInfoBox = d3.select("#sample-metadata");
-// //     // Fetch data from the current URL
-// //     d3.json(iphone_samsung_url).then(data => {
-// //         var brandModelData = data.find(entry => entry.brand_model === brandModel);
-// //         // Clear the previous data
-// //         productInfoBox.html("");
-// //         // Display demographic information
-// //         var desired_info = ['brand', 'color', 'price', 'storage_capacity'];
-// //         desired_info.forEach(key => {
-// //             productInfoBox.append("p").text(`${key}: ${brandModelData[key]}`);
-// //         });
-// //         // Object.entries(brandModelData).desired_info.forEach(([key, value]) => {
-// //         //     demographicInfoBox.append("p").text(`${key}: ${value}`);
-// //         // });
-// //     });
-// // }
-
-// // No. 3 Defines the function for OptionChaged 
-// function optionBrandChanged() {
-//   console.log(brand);
-//   // Call the function to populate Demographic info 
-//   // populateProdcutInfo(brand);
-//   // Call the function to Create Pie Chart
-//   buildBrandPieChart();
-
-//   // Call the function to pass the 'patientID' for the 'Bar', 'Bubble' and 'Guage' chart.
-//   // buildBarChart(patientID);
-//   // buildBubbleChart(patientID);
-
-// }
-
-
-// // No. 4 Defines to create the Pie Chart for Each Product  star ratings distribution 
-// function buildBrandPieChart(){
-//   // Read in the JSON data
-//   d3.json(iphone_url).then((data => {
-//   // Extract star ratings and counts from the data
-//   // Extracting data for Pie Chart
-// var pieChartData = {
-//   "5 star": data.map(entry => entry["5 star"]).reduce((a, b) => a + b, 0),
-//   "4 star": data.map(entry => entry["4 star"]).reduce((a, b) => a + b, 0),
-//   "3 star": data.map(entry => entry["3 star"]).reduce((a, b) => a + b, 0),
-//   "2 star": data.map(entry => entry["2 star"]).reduce((a, b) => a + b, 0),
-//   "1 star": data.map(entry => entry["1 star"]).reduce((a, b) => a + b, 0),
-// };
-
-// // Create a Pie Chart using Plotly
-// var trace = {
-//   labels: Object.keys(pieChartData),
-//   values: Object.values(pieChartData),
-//   type: 'pie',
-//   marker: {
-//     colors: ['rgb(0, 128, 255)', 'rgb(0, 179, 0)', 'rgb(255, 191, 0)', 'rgb(255, 0, 0)', 'rgb(128, 0, 128)'], // Colors for segments
-//   }
-// };
-
-// var layout = {
-//   title: 'Iphone Distribution of Star Ratings',
-// };
-
-// // Plot the Pie Chart
-// Plotly.newPlot('pieChart', [trace], layout);
-
-//   }))
-// }
-
-
-/////////////////////////             End of Brand                  ///////////////////////////////
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//////////////////////////////
-///////////////////////
-
-// // No. 5 Defines the function to get the data and build the 'Bar' chart.
-// function buildBarChart(patientID) {
-
-//     // Read in the JSON data
-//       d3.json(url).then((data => {
-  
-//           // Define samples
-//           var samples = data.samples
-  
-//           // Filter by patient ID
-//           var filteredSample = samples.filter(bacteriaInfo => bacteriaInfo.id == patientID)[0]
-  
-//           // Create variables for chart
-//           // Grab sample_values for the bar chart
-//           var sample_values = filteredSample.sample_values
-  
-//           // Use otu_ids as the labels for bar chart
-//           var otu_ids = filteredSample.otu_ids
-  
-//           // use otu_labels as the hovertext for bar chart
-//           var otu_labels = filteredSample.otu_labels
-  
-//           // BAR CHART
-//           // Create the trace
-//            var bar_data =[{
-//               // Use otu_ids for the x values
-//               x: sample_values.slice(0, 10).reverse(),
-//               // Use sample_values for the y values
-//               y: otu_ids.slice(0, 10).map(otu_id => `OTU ${otu_id}`).reverse(),
-//               // Use otu_labels for the text values
-//               text: otu_labels.slice(0, 10).reverse(),
-//               type: 'bar',
-//               orientation: 'h',
-//               marker: {
-//                   color: 'rgb(242, 113, 102)'
-//               },
-//           }]
-  
-//           // Define plot layout
-//           var bar_layout = {
-//               title: "Top 10 Microbial Species in Belly Buttons",
-//               xaxis: { title: "Bacteria Sample Values" },
-//               yaxis: { title: "OTU IDs" }
-//           };
-  
-//           // Display plot
-//           Plotly.newPlot('bar', bar_data, bar_layout)
-          
-//       }))
-  
-  
-//   };
-
-
-// // No. 5 Defines the function to get the data and build the 'Bubbble' chart.
-// function buildBubbleChart(patientID) {
-
-//     // Read in the JSON data
-//       d3.json(url).then((data => {
-  
-//           // Define samples
-//           var samples = data.samples
-  
-//           // Filter by patient ID
-//           var filteredSample = samples.filter(bacteriaInfo => bacteriaInfo.id == patientID)[0]
-  
-//           // Create variables for chart
-//           // Grab sample_values for the bar chart
-//           var sample_values = filteredSample.sample_values
-  
-//           // Use otu_ids as the labels for bar chart
-//           var otu_ids = filteredSample.otu_ids
-  
-//           // use otu_labels as the hovertext for bar chart
-//           var otu_labels = filteredSample.otu_labels
-  
-  
-//           // BUBBLE CHART
-//           // Create the trace
-//           var bubble_data = [{
-//               // Use otu_ids for the x values
-//               x: otu_ids,
-//               // Use sample_values for the y values
-//               y: sample_values,
-//               // Use otu_labels for the text values
-//               text: otu_labels,
-//               mode: 'markers',
-//               marker: {
-//                   // Use otu_ids for the marker colors
-//                   color: otu_ids,
-//                   // Use sample_values for the marker size
-//                   size: sample_values,
-//                   colorscale: 'YlOrRd'
-//               }
-//           }];
-  
-  
-//           // Define plot layout
-//           var layout = {
-//               title: "Belly Button Samples",
-//               xaxis: { title: "OTU IDs" },
-//               yaxis: { title: "Sample Values" }
-//           };
-  
-//           // Display plot
-//           Plotly.newPlot('bubble', bubble_data, layout)
-  
-          
-//       }))
-  
-  
 //   };
 
 
 
 
+//////////////////////////////////////////////      Sweeet Library           /////////////////////////////////////////////////
+
+function showSweetAlert() {
+  Swal.fire({
+    title: "Unlock the Power of Data Insights!",
+      timer: 3000, // Auto close after 3 seconds
+      icon: 'success',
+      html: "Where data meets design",
+      showConfirmButton: false, // Hide the "OK" button
+  });
+}
+
+// Trigger the Sweet Alert when the page loads
+window.onload = function() {
+  showSweetAlert();
+};
 
 
+
+
+
+
+
+
+///////////////////////////////////   End of Product            ///////////////////////////////////

@@ -6,6 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Amazon Mobiles Data Visualizations</title>
+  <!-- Include the css and js for Sweet alert -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" href="static/css/style.css">
   <!-- <link rel="stylesheet" href="sweetalert2.min.css"> -->
@@ -14,48 +18,171 @@
 
 <body>
 
+<!-- Start of the Container for Each Product -->
   <div class="container">
+                                        <div class="row">
+                                          <div class="col-md-12 jumbotron text-center">
+                                            <h1>Iphone Samsung Visualizations Dashboard</h1>
+                                            <p>Keep Calm And Use Data Wisely</p>
+                                          </div>
+                                        </div>
+    
     <div class="row">
-      <div class="col-md-12 jumbotron text-center">
-        <h1>Iphone Samsung Visualizations Dashboard</h1>
-        <p>Keep Calm And Use Data Wisely</p>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-2">
+      <div class="col-md-12">
         <div class="well">
-          <h5>Select Your Brand</h5>
-          <select id="selDataset" onchange="optionChanged(this.value)"></select>
+          <h5>Select Your Product</h5>
+          <select id="selDataset" onchange="optionProductChanged(this.value)"></select>
         </div>
         <div class="panel panel-default">
           <div class="panel-heading-custom">
-            <h3 class="panel-title">Demographic Info</h3>
+            <h3 class="panel-title">Product Info</h3>
           </div>
           <div id="sample-metadata" class="panel-body"></div>
         </div>
       </div>
-      <div class="col-md-5">
-        <div id="bar"></div>
+    </div>
+      
+                      <!-- Products -->
+                      <div class="row">  
+                        <div class="col-md-6">
+                          <div id="pieProduct"></div>
+                        </div>
+                        <div class="col-md-6">
+                          <div id="barProduct"></div>
+                        </div>
+                      </div>  
+
+
+      <!-- Price Bar Charts -->
+      <div class="row">                     
+        <div class="col-md-6">
+          <div id="applepricebar"></div>
+        </div>
+
+        <div class="col-md-6">
+          <div id="samsungpricebar"></div>
+        </div>
+
       </div>
-      <div class="col-md-5">
-        <div id="gauge"></div>
+      
+      
+       <!-- Brand Bar Charts  -->
+       <div class="row">                     
+            <div class="col-md-6">
+              <div id="applebar"></div>
+            </div>
+
+            <div class="col-md-6">
+              <div id="samsungbar"></div>
+            </div>
+    </div>
+    
+  <div class="row">                     
+            <div class="col-md-12">
+              <div id="brandbar"></div>
+            </div>
+    </div>
+
+    
+    
+    
+    <!-- Brand  Pie Charts -->
+    <div class="row">
+          <div class="col-md-6">
+            <div id="applepie"></div>
+          </div>
+
+
+          <div class="col-md-6">
+            <div id="samsungpie"></div>
+          </div>
+    </div>
+
+     <!-- Model Year Charts -->
+      <div class="row">
+        <div class="col-md-12">
+          <div id="lineChart"></div>
+        </div>
+      </div>
+
+      
+     <!-- Brand Global Ratings with Price Bubble Charts -->
+     <div class="row">
+      <div class="col-md-12">
+        <div id="bubbleChart"></div>
       </div>
     </div>
-    <div class="row">
-      <div class="col-md-12">
-        <div id="bubble"></div>
-      </div>
+      
+
+      <!-- End of first conainter -->
+  </div>
+
+ 
+
+
+
+<!-- End of the Container for Each Product -->
+
+
+
+
+
+<!-- Start of the Container for Each Brand -->
+ <!-- <div class="container"> -->
+  <div class="row">
+    <div class="col-md-12 jumbotron text-center">
+      <h1>Iphone Samsung Brand</h1>
+      <p>Brand Visualizations</p>
     </div>
   </div>
 
+  <div class="row">
+    <div class="col-md-3">
+      <div class="well">
+        <h5>Select Your Brand</h5>
+        <select id="selBrandDataset" onchange="optionBrandChanged(this.value)"></select>
+      </div>
+    </div>
+
+    <div class="col-md-5">
+      <div id="pieBrand"></div>
+    </div>
+    <div class="col-md-5">
+      <div id="barBrand"></div>
+    </div>
+    
+    <div class="col-md-5">
+      <div id="brandbarChart"></div>
+    </div>
+    <div class="col-md-5">
+      <div id="brandpie"></div>
+    </div>
+  </div>
+    <div class="col-md-5">
+      <div id="pieBrand"></div>
+    </div>
+    <div class="col-md-5">
+      <div id="bar"></div>
+    </div>
+    <div class="col-md-5">
+      <div id="gauge"></div>
+    </div>
+
+      
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script src="https://cdnjs.com/libraries/Chart.js"></script>
+  <script src="sweetalert2.min.js"></script>
   <script src="static/js/app.js"></script>
+  <!-- <script src="static/js/brand.js"></script> -->
+  
+  
+
   
   <!-- <script src="https://d3js.org/d3.v7.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/4.7.0/fabric.min.js"></script>
-  <script src="https://cdnjs.com/libraries/Chart.js"></script>
-  <script src="sweetalert2.min.js"></script>
+  
   <script src="static/js/app.js"></script> -->
 
 
