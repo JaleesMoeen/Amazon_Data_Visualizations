@@ -272,6 +272,7 @@ For Samsung Galaxy Phones:
 
 - The Galaxy S21 5G has the highest number of global ratings (173) among the Samsung models.
 
+
 ## Authors
 
 ## [Maira Syed GitHub](https://github.com/mairasyed)
