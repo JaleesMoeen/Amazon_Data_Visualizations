@@ -53,6 +53,15 @@
                       </div>  
 
 
+
+<!-- Heading for brands -->
+                      <div class="row">
+                        <div class="col-md-12 jumbotron text-center">
+                          <h1>Apple & Samsung Charts</h1>
+                        </div>
+                      </div>
+
+
       <!-- Price Bar Charts -->
       <div class="row">                     
         <div class="col-md-6">
@@ -67,15 +76,7 @@
       
       
        <!-- Brand Bar Charts  -->
-       <div class="row">                     
-            <div class="col-md-6">
-              <div id="applebar"></div>
-            </div>
-
-            <div class="col-md-6">
-              <div id="samsungbar"></div>
-            </div>
-    </div>
+      
     
   <div class="row">                     
             <div class="col-md-12">
@@ -96,23 +97,25 @@
           <div class="col-md-6">
             <div id="samsungpie"></div>
           </div>
+
+          <!-- Model Year Charts -->
+          <div class="row">
+            <div class="col-md-12">
+              <div id="lineChart"></div>
+            </div>
+          </div>
+
+
+          <!-- Brand Global Ratings with Price Bubble Charts -->
+          <div class="row">
+          <div class="col-md-12">
+            <div id="bubbleChart"></div>
+          </div>
+          </div>
+          
     </div>
 
-     <!-- Model Year Charts -->
-      <div class="row">
-        <div class="col-md-12">
-          <div id="lineChart"></div>
-        </div>
-      </div>
-
-      
-     <!-- Brand Global Ratings with Price Bubble Charts -->
-     <div class="row">
-      <div class="col-md-12">
-        <div id="bubbleChart"></div>
-      </div>
-    </div>
-      
+    
 
       <!-- End of first conainter -->
   </div>
@@ -127,63 +130,20 @@
 
 
 
-<!-- Start of the Container for Each Brand -->
- <!-- <div class="container"> -->
-  <div class="row">
-    <div class="col-md-12 jumbotron text-center">
-      <h1>Iphone Samsung Brand</h1>
-      <p>Brand Visualizations</p>
-    </div>
-  </div>
 
-  <div class="row">
-    <div class="col-md-3">
-      <div class="well">
-        <h5>Select Your Brand</h5>
-        <select id="selBrandDataset" onchange="optionBrandChanged(this.value)"></select>
-      </div>
-    </div>
 
-    <div class="col-md-5">
-      <div id="pieBrand"></div>
-    </div>
-    <div class="col-md-5">
-      <div id="barBrand"></div>
-    </div>
-    
-    <div class="col-md-5">
-      <div id="brandbarChart"></div>
-    </div>
-    <div class="col-md-5">
-      <div id="brandpie"></div>
-    </div>
-  </div>
-    <div class="col-md-5">
-      <div id="pieBrand"></div>
-    </div>
-    <div class="col-md-5">
-      <div id="bar"></div>
-    </div>
-    <div class="col-md-5">
-      <div id="gauge"></div>
-    </div>
+                    
 
-      
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
   <script src="https://cdnjs.com/libraries/Chart.js"></script>
   <script src="sweetalert2.min.js"></script>
   <script src="static/js/app.js"></script>
-  <!-- <script src="static/js/brand.js"></script> -->
+  
   
   
 
-  
-  <!-- <script src="https://d3js.org/d3.v7.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/4.7.0/fabric.min.js"></script>
-  
-  <script src="static/js/app.js"></script> -->
 
 
 </body>

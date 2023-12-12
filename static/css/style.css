@@ -1,5 +1,5 @@
 .panel-default > .panel-heading-custom {
-    background: #145fbb; color: #fff;
+    background: #D24E68; color: #fff;
     padding-top: 5px;
     padding-bottom: 5px;
     padding-left: 5px;
@@ -9,7 +9,7 @@
 
 .jumbotron {
     /* https://www.simplilearn.com/ice9/free_resources_article_thumb/Data-Science-vs.-Big-Data-vs.jpg */
-	background-image: url("../img/header.jpg");
+	background-image: url("../img/header.png");
 	background-size: 100%;
     text-align: center;   
     /* ../img/header.png */

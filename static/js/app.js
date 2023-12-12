@@ -17,9 +17,6 @@ window.onload = function() {
 };
 
 
-
-
-
 // API endpoints for fetching iPhone, Samsung, and merged details
 const iphone_samsung_url = "/api/iphone_samsung_details"
 const iphone_url = "/api/iphone_details";
@@ -61,17 +58,9 @@ function initProduct() {
 
         // Call the function for Brand Bubble Chart 
         buildBrandBubbleChart();
-
-        //Call the function for Brand Bar Charts
-        buildBrandBarChart();
-        
-
-
-
         
     }); 
   // End of Product Drop Down
-  
 }
 
 // Call the function for Dashboard
@@ -166,7 +155,7 @@ function buildProductBarChart(brandModel) {
           type: 'bar',
           orientation: 'h',
           marker: {
-              color: 'rgb(242, 113, 102)',
+            color: 'rgb(242, 113, 102)' //'rgb(242, 113, 102)',
           },
       }];
 
@@ -389,20 +378,20 @@ function buildBrandModelLineChart() {
     // Create traces for Apple and Samsung
     var appleTrace = {
       x: appleData.map(entry => entry.model_year),
-      y: appleData.map(entry => entry.brand_model),
+      y: appleData.map(entry => entry.price),
       mode: 'lines+markers',
       name: 'Apple',
-      text: appleData.map(entry => `$${entry.price.toFixed(2)}`), // Add price to the text property
-      hoverinfo: 'y+text',  // Show brand model and price in the hover info
+      text: appleData.map(entry => `${entry.brand_model}<br>$${entry.price.toFixed(2)}`), // Concatenate brand_model and price in the text property
+      hoverinfo: 'text',  // Show only the custom text when hovering over a marker
     };
 
     var samsungTrace = {
       x: samsungData.map(entry => entry.model_year),
-      y: samsungData.map(entry => entry.brand_model),
+      y: samsungData.map(entry => entry.price),
       mode: 'lines+markers',
       name: 'Samsung',
-      text: samsungData.map(entry => `$${entry.price.toFixed(2)}`), // Add price to the text property
-      hoverinfo: 'y+text',  // Show brand model and price in the hover info
+      text: samsungData.map(entry => `${entry.brand_model}<br>$${entry.price.toFixed(2)}`), // Concatenate brand_model and price in the text property
+      hoverinfo: 'text',  // Show only the custom text when hovering over a marker
     };
 
     // Layout settings
@@ -415,8 +404,10 @@ function buildBrandModelLineChart() {
       tickvals: samsungData.map(entry => entry.model_year), // Set tick values to the actual model years
       ticktext: samsungData.map(entry => entry.model_year), // Set tick text to the actual model years
     },
-      yaxis: { title: 'Brand Model',
-      automargin: true, },
+      yaxis: { title: 'Price',
+      tickformat: '$,.2f', // Format ticks as dollars with two decimal places
+      automargin: true // Add margin to the left of y-axis labels
+     },
       margin: {
         l: 50,  // increase left margin
         r: 50,  // increase right margin
@@ -453,7 +444,7 @@ function buildBrandBubbleChart() {
         size: appleData.map(entry => entry.star_ratings * 1), // Scale the size by star ratings
         sizemode: 'diameter',
         sizeref: 0.1,
-        color: 'rgba(255, 99, 132, 0.7)', // Adjust color as needed
+        color: 'rgb(255, 65, 54)',  // Adjust color as needed
       },
       name: 'Apple',
     };
@@ -467,16 +458,16 @@ function buildBrandBubbleChart() {
         size: samsungData.map(entry => entry.star_ratings * 1), // Scale the size by star ratings
         sizemode: 'diameter',
         sizeref: 0.1,
-        color: 'rgba(75, 192, 192, 0.7)', // Adjust color as needed
+        color: 'rgb(255, 144, 14)', // Adjust color as needed
       },
       name: 'Samsung',
     };
-
+    
     // Layout settings
     var layout = {
       title: 'Bubble Chart for Brand Models',
       xaxis: { title: 'Global Ratings' },
-      yaxis: { title: 'Price' },
+      yaxis: { title: 'Price ($) ' },
       showlegend: true,
     };
 
@@ -487,32 +478,6 @@ function buildBrandBubbleChart() {
 
 
 
-// ///////////////////////////////////  Bar Char for Both Brands ////////////////////////////////
-// // Function to build a bar chart for Apple and Samsung brand models
-// function buildBrandBarChart() {
-//    // Replace iphone_samsung_url with the appropriate URL for your data
-//    d3.json(iphone_samsung_url).then((data) => {
-//     // Extract brand_model and price data for each model
-//     var barData = data.map(entry => {
-//       return {
-//         x: [entry.brand_model], // Use an array for x to place each bar separately
-//         y: [entry.price], // Use an array for y to specify the height of each bar
-//         type: 'bar',
-//         name: entry.brand_model,
-//       };
-//     });
-
-//     // Define plot layout
-//     var layout = {
-//       title: 'Bar Chart for Brand Models',
-//       xaxis: { title: 'Brand Model' },
-//       yaxis: { title: 'Price' },
-//     };
-
-//     // Display the plot
-//     Plotly.newPlot('brandbar', barData, layout);
-//   });
-//   };
 
 
 
