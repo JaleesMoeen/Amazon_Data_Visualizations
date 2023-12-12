@@ -396,7 +396,7 @@ function buildBrandModelLineChart() {
 
     // Layout settings
     var layout = {
-      title: 'Line Chart for Brand Models Over Model Years',
+      title: 'Line Chart for Model Years',
       xaxis: {  title: 'Model Year',
       tickmode: 'array',
       tickvals: appleData.map(entry => entry.model_year), // Set tick values to the actual model years
@@ -465,7 +465,7 @@ function buildBrandBubbleChart() {
     
     // Layout settings
     var layout = {
-      title: 'Bubble Chart for Brand Models',
+      title: 'Bubble Chart for Global Ratings',
       xaxis: { title: 'Global Ratings' },
       yaxis: { title: 'Price ($) ' },
       showlegend: true,

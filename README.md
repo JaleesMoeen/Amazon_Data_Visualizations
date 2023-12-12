@@ -105,34 +105,6 @@ Creates DataFrames 'scraped_iphone_df' and 'scraped_samsung_df' from the scraped
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ## Deliverable 2: Deliverable 2: Data Cleaning Using Jupyter Notebook
 
 Hey, let's clean the data for robust Python Data Analysis experiences using Pandas and Regular Expressions.
@@ -228,6 +200,11 @@ The below routes read merged iPhone and Samsung data from a CSV file, converts i
 
 Displays a SweetAlert notification when the page loads.
 
+Includes a SweetAlert popup to display a success message when the page loads, providing a user-friendly experience.
+
+
+![Alt text](images/20_sweetalert.png)
+
 
 #### 3.3.2 Product Selection and Dashboard Initialization:
 
@@ -242,7 +219,6 @@ Constructs a pie chart displaying the distribution of star ratings for the selec
 Building Bar Chart for Product Star Ratings:
 
 
-
 ![Alt text](images/16_product_info.png)
 
 
@@ -250,34 +226,33 @@ Building Bar Chart for Product Star Ratings:
 
 Constructs a bar chart displaying the prices of Apple & Samsung phones.
 
+Bar chart displaying the distribution of star ratings for Samsung brand models.
 
 ![Alt text](images/17_apple_samsung_bar.png)
 
+#### 3.3.4 Line Chart for Model Years
 
 
-
-Bar chart displaying the distribution of star ratings for Samsung brand models.
-Building Pie Chart for Samsung Brand Models:
-
-Constructs a pie chart displaying the distribution of star ratings for Samsung brand models.
-Building Price Bar Chart for Samsung Phones:
-
-Constructs a bar chart displaying the prices of Samsung phones.
-Building Line Chart for Both Brands Over Model Years:
-
-Constructs a line chart showing the evolution of brand models over different model years for both Apple and Samsung.
-Building Bubble Chart for Both Brands:
-
-Constructs a bubble chart showing the relationship between global ratings, price, and brand models for both Apple and Samsung.
-SweetAlert Integration:
-
-Includes a SweetAlert popup to display a success message when the page loads, providing a user-friendly experience.
+Line chart showing the evolution of brand models over different model years for both Apple and Samsung with respect to price.
 
 
+![Alt text](images/18_line_chart.png)
 
 
+#### 3.3.5 Bubble Chart for Global Ratings
+
+Bubble chart showing the relationship between global ratings, price, and brand models for both Apple and Samsung.
+
+The size of each bubble is determine by the corresponding overall "star_ratings".
 
 
+![Alt text](images/19_bubble_chart.png)
+
+
+### 3.3 Dashboard Layout
+
+
+![Alt text](images/23_dashboard.png)
 
 
 
