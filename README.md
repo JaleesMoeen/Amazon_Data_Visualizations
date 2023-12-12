@@ -219,16 +219,12 @@ Constructs a pie chart displaying the distribution of star ratings for the selec
 Building Bar Chart for Product Star Ratings:
 
 
-![Alt text](images/16_product_info.png)
-
-
 #### 3.3.3 Bar Chart for Apple Samsung Product & Price 
 
 Constructs a bar chart displaying the prices of Apple & Samsung phones.
 
 Bar chart displaying the distribution of star ratings for Samsung brand models.
 
-![Alt text](images/17_apple_samsung_bar.png)
 
 #### 3.3.4 Line Chart for Model Years
 
@@ -236,17 +232,11 @@ Bar chart displaying the distribution of star ratings for Samsung brand models.
 Line chart showing the evolution of brand models over different model years for both Apple and Samsung with respect to price.
 
 
-![Alt text](images/18_line_chart.png)
-
-
 #### 3.3.5 Bubble Chart for Global Ratings
 
 Bubble chart showing the relationship between global ratings, price, and brand models for both Apple and Samsung.
 
 The size of each bubble is determine by the corresponding overall "star_ratings".
-
-
-![Alt text](images/19_bubble_chart.png)
 
 
 ### 3.3 Dashboard Layout
