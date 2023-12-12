@@ -84,6 +84,7 @@ function  populateProdcutInfo(brandModel) {
   });
 }
 
+
 // No. 3 Defines the function for OptionChaged 
 function optionProductChanged(brandModel) {
     console.log(brandModel);
