@@ -252,8 +252,8 @@ The size of each bubble is determine by the corresponding overall "star_ratings"
 ### 3.3 Dashboard Layout
 
 
-![Alt text](images/23_dashboard.png)
-
+![Alt text](images/21_product_dashboard.png)
+![Alt text](images/22_brand_dashboard.png)
 
 
 
