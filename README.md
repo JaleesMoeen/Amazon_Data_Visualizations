@@ -1,4 +1,4 @@
-# Amazon_Web_Scrapping_ETL_EDA
+# Amazon_Web_Scrapping_Data_Visualizations
  Embark on an engaging project that seamlessly combines the thrill of gaming with the tech-driven realms of web scraping, ETL (Extract, Transform, Load), and insightful exploratory data analysis (EDA). Dive into the Amazon ecosystem as you leverage these techniques to uncover hidden gems, transform raw data into meaningful insights, and create an immersive experience at the intersection of data exploration.
 
 
