@@ -17,6 +17,9 @@ Hey, Welcome to 'Amazon Dashboard,' where we bring together the forces of web sc
 As a global e-commerce giant and digital services provider, Amazon complements the tech experiences offered by both Samsung and iPhone.Together, the dynamic trio of Samsung, iPhone, and Amazon creates a seamless, interconnected digital experience. From the latest smartphones to smart home integration and effortless online shopping, this collaboration defines the modern intersection of technology and convenience.
 
 
+"Amazon_Web_Scrapping_Data_Visualizations," integrates web scraping, ETL processes, and data visualizations using Beautiful Soup, Plotly.js, and Flask. The exploration focuses on Amazon, Apple, and Samsung products, offering insights into pricing, star ratings, and global ratings, presented through interactive charts and a dynamic dashboard.
+
+
 ![Alt text](images/2_amazon_logo.png)
 
 
